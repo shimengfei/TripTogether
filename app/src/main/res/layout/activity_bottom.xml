@@ -17,7 +17,7 @@ android:layout_height="wrap_content"
         android:id="@+id/iv_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/tuijian" />
+        android:src="@mipmap/tuijian" />
 
     <TextView
         android:id="@+id/tv_home"
@@ -41,7 +41,7 @@ android:layout_height="wrap_content"
         android:id="@+id/iv_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/address" />
+        android:src="@mipmap/address" />
 
     <TextView
         android:id="@+id/tv_address"
@@ -65,7 +65,7 @@ android:layout_height="wrap_content"
         android:id="@+id/iv_friend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/createtask_fill" />
+        android:src="@mipmap/createtask_fill" />
 
     <TextView
         android:id="@+id/tv_friend"
@@ -89,7 +89,7 @@ android:layout_height="wrap_content"
         android:id="@+id/iv_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/set" />
+        android:src="@mipmap/set" />
 
     <TextView
         android:id="@+id/tv_setting"
