@@ -1,4 +1,4 @@
-package com.hebut.triptogether;
+package com.hebut.triptogether.UI.Main;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,6 +6,9 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.hebut.triptogether.R;
+import com.hebut.triptogether.UI.login_register.Login;
 
 public class activity_start extends AppCompatActivity {
     private final int SPLASH_DISPLAY_LENGHT = 3000; // 延迟六秒

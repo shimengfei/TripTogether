@@ -9,6 +9,15 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk{ //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        sourceSets {
+            main {
+                jniLibs.srcDirs = ['libs']
+            }
+        }
     }
     buildTypes {
         release {
@@ -26,4 +35,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/andbase.jar')
+    implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/json-lib-2.4-jdk15.jar')
 }

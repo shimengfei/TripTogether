@@ -108,7 +108,7 @@
                 android:id="@+id/pwdBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_selector_blue_light"
+                android:background="@drawable/button_selector_white"
                 android:paddingLeft="5dip"
                 android:paddingRight="5dip"
                 android:text="@string/find_pwd"

@@ -1,4 +1,5 @@
 <resources>
+    <string name="register_name">新用户注册</string>
     <string name="app_name">TripTogether</string>
     <string name="date_picker">年月日：</string>
     <string name="time_picker1">月日时分：</string>
@@ -54,4 +55,5 @@
     <string name="error_age_length2">年龄不能大于100个字符</string>
     <string name="error_age_expr">年龄必须为数字</string>
     <string name="error_params_expr">包含不支持的文字格式!</string>
+    <string name="okBtn">确定</string>
 </resources>

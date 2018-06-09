@@ -1,32 +1,47 @@
-package com.hebut.triptogether;
+package com.hebut.triptogether.UI.login_register;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.ab.util.AbStrUtil;
+import com.ab.util.AbToastUtil;
+import com.hebut.triptogether.UI.Main.MainActivity;
+import com.hebut.triptogether.R;
+import com.hebut.triptogether.Jsonutil.jsontool;
+import com.hebut.triptogether.Jsonutil.jsonutil;
+import com.hebut.triptogether.Model.person;
 
 import java.io.File;
-import java.util.logging.Handler;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private Button btn_login, btn_regist, btn_findback;
     private EditText editText_username, editText_pwd;
     private CheckBox checkBox_remember;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.setThreadPolicy(new
+                    StrictMode.ThreadPolicy.Builder().detectDiskReads().detectDiskWrites().detectNetwork().penaltyLog().build());
+            StrictMode.setVmPolicy(
+                    new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
+        }
         initView();
         initOnclick();
     }
+
 
     private void initView() {
         //登录界面控件初始化
@@ -50,6 +65,64 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.loginBtn:
                 String user = editText_username.getText().toString();
                 String pwd = editText_pwd.getText().toString();
+                //mStrName = userName.getText().toString();
+                //mStrPwd = userPwd.getText().toString();
+
+                if (TextUtils.isEmpty(user)) {
+                    AbToastUtil.showToast(Login.this,R.string.error_name);
+                    editText_username.setFocusable(true);
+                    editText_username.requestFocus();
+                    return;
+                }
+
+                if (!AbStrUtil.isNumberLetter(user)) {
+                    AbToastUtil.showToast(Login.this,R.string.error_name_expr);
+                    editText_username.setFocusable(true);
+                    editText_username.requestFocus();
+                    return;
+                }
+
+                if (AbStrUtil.strLength(user)<3) {
+                    AbToastUtil.showToast(Login.this,R.string.error_name_length1);
+                    editText_username.setFocusable(true);
+                    editText_username.requestFocus();
+                    return;
+                }
+
+                if (AbStrUtil.strLength(user)>20) {
+                    AbToastUtil.showToast(Login.this,R.string.error_name_length2);
+                    editText_username.setFocusable(true);
+                    editText_username.requestFocus();
+                    return;
+                }
+
+                if (AbStrUtil.isEmpty(pwd)) {
+                    AbToastUtil.showToast(Login.this,R.string.error_pwd);
+                    editText_pwd.setFocusable(true);
+                    editText_pwd.requestFocus();
+                    return;
+                }
+
+                if (AbStrUtil.strLength(pwd)<6) {
+                    AbToastUtil.showToast(Login.this,R.string.error_pwd_length1);
+                    editText_pwd.setFocusable(true);
+                    editText_pwd.requestFocus();
+                    return;
+                }
+
+                if (AbStrUtil.strLength(pwd)>20) {
+                    AbToastUtil.showToast(Login.this,R.string.error_pwd_length2);
+                    editText_pwd.setFocusable(true);
+                    editText_pwd.requestFocus();
+                    return;
+                }
+                // TODO Auto-generated method stub
+                String path="http://192.168.130.2:8080/TripTogetherServer/jsonaction?test=person";
+                String jsonstring= jsonutil.getjsoncontent(path);
+                person person= jsontool.getperson("person", jsonstring);
+                Log.i("Main", person.toString());
+                editText_username.setText(String.valueOf(person.getId()));
+                Toast.makeText(Login.this, jsonstring, Toast.LENGTH_SHORT).show();
                 //查询数据库
                 if(true){
                     login(user,pwd);
@@ -60,9 +133,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.registerBtn:
                 //跳到注册页面
+                Intent intent=new Intent(Login.this,register.class);
+                startActivity(intent);
                 break;
             case R.id.pwdBtn:
                 //跳到找回密码页面
+                Intent intent1=new Intent(Login.this,FindPwd.class);
+                startActivity(intent1);
                 break;
         }
     }

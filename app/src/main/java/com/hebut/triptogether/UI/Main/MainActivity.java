@@ -1,10 +1,13 @@
-package com.hebut.triptogether;
+package com.hebut.triptogether.UI.Main;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.ab.activity.AbActivity;
-import android.os.Bundle;
+import com.hebut.triptogether.UI.Address.AddressFragment;
+import com.hebut.triptogether.UI.PushList.PushList;
+import com.hebut.triptogether.R;
+import com.hebut.triptogether.UI.Route.Route;
+import com.hebut.triptogether.UI.PersonalInfor.PersonalInfor;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -37,7 +40,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
     // 4个Fragment
     private Fragment homeFragment;
     private Fragment addressFragment;
-    private Fragment friendFragment;
+    private Fragment routeFragment;
     private Fragment settingFragment;
 
     @Override
@@ -64,7 +67,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         switch (index) {
             case 0:
                 if (homeFragment == null) {
-                    homeFragment = new HomeFragment();
+
+                    homeFragment = new PushList();
                     transaction.add(R.id.fl_content, homeFragment);
                 } else {
                     transaction.show(homeFragment);
@@ -80,17 +84,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
                 break;
             case 2:
-                if (friendFragment == null) {
-                    friendFragment = new FriendFragment();
-                    transaction.add(R.id.fl_content, friendFragment);
+                if (routeFragment == null) {
+                    routeFragment = new Route();
+                    transaction.add(R.id.fl_content, routeFragment);
                 } else {
-                    transaction.show(friendFragment);
+                    transaction.show(routeFragment);
                 }
 
                 break;
             case 3:
                 if (settingFragment == null) {
-                    settingFragment = new SettingFragment();
+                    settingFragment = new PersonalInfor();
                     transaction.add(R.id.fl_content, settingFragment);
                 } else {
                     transaction.show(settingFragment);
@@ -115,8 +119,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         if (addressFragment != null) {
             transaction.hide(addressFragment);
         }
-        if (friendFragment != null) {
-            transaction.hide(friendFragment);
+        if (routeFragment != null) {
+            transaction.hide(routeFragment);
         }
         if (settingFragment != null) {
             transaction.hide(settingFragment);
@@ -163,22 +167,25 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         // ImageView和TetxView置为绿色，页面随之跳转
         switch (v.getId()) {
             case R.id.ll_home:
-                iv_home.setImageResource(R.drawable.tab_tuijian_pressed);
+                //iv_home.setImageResource(R.mipmap.tuijian);
+                //iv_address.setImageResource(R.mipmap.address);
+                //iv_friend.setImageResource(R.mipmap.createtask_fill);
+                //iv_setting.setImageResource(R.mipmap.set);
                 tv_home.setTextColor(0xff1B940A);
                 initFragment(0);
                 break;
             case R.id.ll_address:
-                iv_address.setImageResource(R.drawable.tab_address_pressed);
+                //iv_address.setImageResource(R.mipmap.address);
                 tv_address.setTextColor(0xff1B940A);
                 initFragment(1);
                 break;
             case R.id.ll_friend:
-                iv_friend.setImageResource(R.drawable.tab_xingcheng_pressed);
+                //iv_friend.setImageResource(R.mipmap.createtask_fill);
                 tv_friend.setTextColor(0xff1B940A);
                 initFragment(2);
                 break;
             case R.id.ll_setting:
-                iv_setting.setImageResource(R.drawable.set_pressed);
+                //iv_setting.setImageResource(R.mipmap.set);
                 tv_setting.setTextColor(0xff1B940A);
                 initFragment(3);
                 break;
