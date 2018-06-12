@@ -1,7 +1,10 @@
 package com.hebut.triptogether.UI.login_register;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Looper;
+import android.os.Message;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,11 +18,15 @@ import android.widget.Toast;
 
 import com.ab.util.AbStrUtil;
 import com.ab.util.AbToastUtil;
+import com.hebut.triptogether.Model.User;
 import com.hebut.triptogether.UI.Main.MainActivity;
 import com.hebut.triptogether.R;
 import com.hebut.triptogether.Jsonutil.jsontool;
 import com.hebut.triptogether.Jsonutil.jsonutil;
 import com.hebut.triptogether.Model.person;
+import com.hebut.triptogether.Jsonutil.*;
+import android.os.Handler;
+import net.sf.json.JSONObject;
 
 import java.io.File;
 
@@ -63,8 +70,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.loginBtn:
-                String user = editText_username.getText().toString();
-                String pwd = editText_pwd.getText().toString();
+                final String user = editText_username.getText().toString();
+                final String pwd = editText_pwd.getText().toString();
                 //mStrName = userName.getText().toString();
                 //mStrPwd = userPwd.getText().toString();
 
@@ -117,20 +124,88 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     return;
                 }
                 // TODO Auto-generated method stub
-                String path="http://192.168.130.2:8080/TripTogetherServer/jsonaction?test=person";
+               /* String path="http://192.168.130.2:8080/TripTogetherServer/jsonaction?test=person";
                 String jsonstring= jsonutil.getjsoncontent(path);
-                person person= jsontool.getperson("person", jsonstring);
+                person person= jsontool.getperson(jsonstring);
                 Log.i("Main", person.toString());
                 editText_username.setText(String.valueOf(person.getId()));
                 Toast.makeText(Login.this, jsonstring, Toast.LENGTH_SHORT).show();
-                //查询数据库
-                if(true){
-                    login(user,pwd);
-                    Intent intent=new Intent(Login.this,MainActivity.class);
-                    startActivity(intent);
-                }
+                //查询数据库*/
 
-                break;
+                JSONObject jsonObject=jsontool.setUser(new User(user,pwd));
+              PostThread postThread= new PostThread("/TripTogetherServer/jsonaction",jsonObject,this);
+              postThread.start();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.v("消息传递结果",String.valueOf(getSign()));
+/*                Handler handler=new Handler(){
+                    public void handleMessage(Message msg) {
+                        super.handleMessage(msg);
+                        if(msg.what==1){
+                            Intent intent=new Intent(Login.this,MainActivity.class);
+                            startActivity(intent);
+                        }else if(msg.what==0){
+                            Toast.makeText(Login.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                };*/
+              if(getSign()==1){
+
+                  login(user,pwd);
+                  Intent intent=new Intent(Login.this,MainActivity.class);
+                  clearSign();
+                  startActivity(intent);
+
+              }else if(getSign()==0){
+                  Toast.makeText(Login.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+                  clearSign();
+              }
+              /*Log.v("消息传递",String.valueOf(postThread.Sign));
+              if(postThread.Sign==0){
+                  login(user,pwd);
+                  Intent intent=new Intent(Login.this,MainActivity.class);
+                  startActivity(intent);
+              }else {
+                  Toast.makeText(Login.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+              }*/
+               /*@SuppressLint("HandlerLeak") android.os.Handler handler=new Handler(new Handler.Callback() {
+                   @Override
+                   public boolean handleMessage(Message message) {
+                       switch (message.what){
+                           case 0:
+                               Toast.makeText(Login.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+                               break;
+                           case 1:
+                               login(user,pwd);
+                               Intent intent=new Intent(Login.this,MainActivity.class);
+                               startActivity(intent);
+                               break;
+                               default:
+                                   Toast.makeText(Login.this,"消息传递失败",Toast.LENGTH_SHORT).show();
+                       }
+                       return true;
+                   }
+               })
+               {*/
+
+                   /*public void handleMessage(Message msg) {
+                       Log.v("消息",msg.toString());
+                       switch (msg.what){
+                           case 1:
+                               login(user,pwd);
+                               Intent intent=new Intent(Login.this,MainActivity.class);
+                               startActivity(intent);
+                               break;
+                           case 0:
+                               Toast.makeText(Login.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+                               break;
+                       }
+                   }*/
+               //};
+               break;
             case R.id.registerBtn:
                 //跳到注册页面
                 Intent intent=new Intent(Login.this,register.class);
@@ -143,7 +218,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
-
+    public void clearSign() {
+        //创建sharedPreference对象，info表示文件名，MODE_PRIVATE表示访问权限为私有的
+        SharedPreferences sp = getSharedPreferences("sign", MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.clear();
+        ed.commit();
+    }
     public void login(String name, String password) {
         //创建sharedPreference对象，info表示文件名，MODE_PRIVATE表示访问权限为私有的
         SharedPreferences sp = getSharedPreferences("info", MODE_PRIVATE);
@@ -158,7 +239,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         //提交用户名和密码
         ed.commit();
     }
+    public int getSign() {
+        //创建sharedPreference对象，info表示文件名，MODE_PRIVATE表示访问权限为私有的
+        SharedPreferences sp = getSharedPreferences("sign", MODE_PRIVATE);
 
+        int sign=sp.getInt("sign",0);
+        return sign;
+    }
     //读取保存在本地的用户名和密码
     public String readAccount() {
 

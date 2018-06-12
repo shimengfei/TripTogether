@@ -9,7 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk{ //选择要添加的对应cpu类型的.so库。
+        ndk { //选择要添加的对应cpu类型的.so库。
             abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
         }
 
@@ -26,10 +26,13 @@ android {
         }
     }
 }
-
+android {
+    defaultConfig {
+        multiDexEnabled true
+    }
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -37,4 +40,11 @@ dependencies {
     implementation files('libs/andbase.jar')
     implementation files('libs/BaiduLBS_Android.jar')
     implementation files('libs/json-lib-2.4-jdk15.jar')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation files('libs/commons-collections-3.1.jar')
+    implementation files('libs/ezmorph-1.0.6.jar')
+    implementation files('libs/picasso-2.5.2.jar')
+    compile 'com.leon:lsettingviewlibrary:1.7.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
 }

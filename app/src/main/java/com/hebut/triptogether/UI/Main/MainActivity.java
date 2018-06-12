@@ -3,10 +3,10 @@ package com.hebut.triptogether.UI.Main;
 import android.os.Bundle;
 
 import com.hebut.triptogether.UI.Address.AddressFragment;
-import com.hebut.triptogether.UI.PushList.PushList;
 import com.hebut.triptogether.R;
+import com.hebut.triptogether.UI.PersonalInfor.PersonalCenterFragment;
+import com.hebut.triptogether.UI.PushList.ShowFragment;
 import com.hebut.triptogether.UI.Route.Route;
-import com.hebut.triptogether.UI.PersonalInfor.PersonalInfor;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -68,7 +68,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
             case 0:
                 if (homeFragment == null) {
 
-                    homeFragment = new PushList();
+                    homeFragment = new ShowFragment();
                     transaction.add(R.id.fl_content, homeFragment);
                 } else {
                     transaction.show(homeFragment);
@@ -94,7 +94,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
                 break;
             case 3:
                 if (settingFragment == null) {
-                    settingFragment = new PersonalInfor();
+                    settingFragment = new PersonalCenterFragment();
                     transaction.add(R.id.fl_content, settingFragment);
                 } else {
                     transaction.show(settingFragment);

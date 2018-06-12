@@ -39,10 +39,12 @@
 
             <ProgressBar
                 style="?android:attr/progressBarStyleSmall"
+                android:id="@+id/probar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/tv_address_find"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5.0dip"

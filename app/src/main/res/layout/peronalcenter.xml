@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:leon="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.Main.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginBottom="16dp"
+        android:background="#fff"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.hebut.triptogether.UI.PersonalInfor.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+
+            app:civ_border_color="#FFFFFF"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="用户名"
+            android:textSize="16sp" />
+    </LinearLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
+        android:id="@+id/item_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        leon:leftText="个人资料" />
+
+    <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
+        android:id="@+id/item_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        leon:leftText="足迹" />
+
+    <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
+        android:id="@+id/item_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        leon:leftText="收藏"
+        />
+
+    <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
+        android:id="@+id/item_four"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyCheckBox"
+
+        leon:leftText="余额"
+        />
+
+    <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
+        android:id="@+id/item_five"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        leon:leftText="我的相册" />
+
+    <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
+        android:id="@+id/item_six"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyCheckBox"
+
+
+        leon:leftText="帮助" />
+
+    <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
+    android:id="@+id/item_seven"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    leon:isShowUnderLine="false"
+
+    leon:leftText="关于"
+     />
+
+    <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
+        android:id="@+id/item_eight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        leon:isShowUnderLine="false"
+
+        leon:leftText="设置"
+         />
+
+</LinearLayout>
+</ScrollView>
+</LinearLayout>
