@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.hebut.triptogether.Model.route;
 import com.hebut.triptogether.UI.PersonalInfor.DbHelper;
 
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class JDDao {
         db.close();
         return list;
     }
+
     //搜索
     public List<JD> get(String name){
         SQLiteDatabase db =dbHelper.getReadableDatabase();

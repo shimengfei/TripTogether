@@ -5,9 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <ListView
+        android:id="@android:id/list"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="4">
+        android:layout_weight="4"
+        >
 
     </ListView>
 
@@ -17,20 +19,22 @@
         android:layout_weight="1">
 
         <Button
+            android:text="添加行程"
             android:id="@+id/route_add"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:background="@mipmap/routeadd" />
+            android:layout_marginLeft="140dp"
+            android:background="@drawable/button_selector_yellow" />
 
-        <Button
+       <!-- <Button
+            android:text="形成最优路径"
             android:id="@+id/route_form"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:background="@mipmap/routeform" />
+            android:background="@drawable/button_selector_yellow" />-->
 
     </LinearLayout>
 </LinearLayout>

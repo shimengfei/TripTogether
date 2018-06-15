@@ -37,6 +37,23 @@ public class ShowFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         initView();
         JDdao =new JDDao(this.getContext());
+
+        for(int i=0;i<10;i++){
+            switch (i%3){
+                case 0:
+                    JDdao.insert(new JD((long)i,"西湖",200));
+                    break;
+                case 1:
+                    JDdao.insert(new JD((long)i,"圆明园",500));
+                    break;
+                case 2:
+                    JDdao.insert(new JD((long)i,"长城",5));
+                    break;
+                    default:
+                        break;
+            }
+        }
+
         list=JDdao.getAll();
         JDAdapter =new JDAdapter(this.getContext(),R.layout.list_item,list);
         listView.setAdapter(JDAdapter);

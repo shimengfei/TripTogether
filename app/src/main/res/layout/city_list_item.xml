@@ -33,7 +33,8 @@
             android:background="#ffbfbfbf" />
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/city_item"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dip" >
@@ -48,6 +49,6 @@
             android:text="安徽"
             android:textColor="#ff404040"
             android:textSize="16.0dip" />
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

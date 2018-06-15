@@ -1,5 +1,6 @@
 package com.hebut.triptogether.UI.Main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.hebut.triptogether.UI.Address.AddressFragment;
@@ -12,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -55,6 +57,26 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
         // 初始化并设置当前Fragment
         initFragment(0);
 
+    }
+
+    @Override
+    protected void onResume() {
+        int id = getIntent().getIntExtra("userloginflag", 0);
+        if (id == 1 ) {
+            /*FragmentManager fragmentManager = getSupportFragmentManager();
+            // 开启事务
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            routeFragment = new Route();
+            transaction.replace(R.id.fl_content,routeFragment);
+            transaction.commit();*/
+            restartBotton();
+            tv_friend.setTextColor(0xff1B940A);
+            initFragment(2);
+
+            //transaction.add(R.id.fl_content, routeFragment);
+            //3代表”我的京东“所在条目的位置，参考下面的源码即可理解
+        }
+        super.onResume();
     }
 
     private void initFragment(int index) {

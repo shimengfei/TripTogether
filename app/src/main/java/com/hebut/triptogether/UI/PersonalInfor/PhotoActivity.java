@@ -1,175 +1,27 @@
 package com.hebut.triptogether.UI.PersonalInfor;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.hebut.triptogether.R;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Random;
 
 public class PhotoActivity extends AppCompatActivity {
 
-    List<MyImage> myImageList=new List<MyImage>() {
-        @Override
-        public int size() {
-            return 0;
-        }
-
-        @Override
-        public boolean isEmpty() {
-            return false;
-        }
-
-        @Override
-        public boolean contains(Object o) {
-            return false;
-        }
-
-        @NonNull
-        @Override
-        public Iterator<MyImage> iterator() {
-            return null;
-        }
-
-        @NonNull
-        @Override
-        public Object[] toArray() {
-            return new Object[0];
-        }
-
-        @NonNull
-        @Override
-        public <T> T[] toArray(@NonNull T[] ts) {
-            return null;
-        }
-
-        @Override
-        public boolean add(MyImage myImage) {
-            return false;
-        }
-
-        @Override
-        public boolean remove(Object o) {
-            return false;
-        }
-
-        @Override
-        public boolean containsAll(@NonNull Collection<?> collection) {
-            return false;
-        }
-
-        @Override
-        public boolean addAll(@NonNull Collection<? extends MyImage> collection) {
-            return false;
-        }
-
-        @Override
-        public boolean addAll(int i, @NonNull Collection<? extends MyImage> collection) {
-            return false;
-        }
-
-        @Override
-        public boolean removeAll(@NonNull Collection<?> collection) {
-            return false;
-        }
-
-        @Override
-        public boolean retainAll(@NonNull Collection<?> collection) {
-            return false;
-        }
-
-        @Override
-        public void clear() {
-
-        }
-
-        @Override
-        public MyImage get(int i) {
-            return null;
-        }
-
-        @Override
-        public MyImage set(int i, MyImage myImage) {
-            return null;
-        }
-
-        @Override
-        public void add(int i, MyImage myImage) {
-
-        }
-
-        @Override
-        public MyImage remove(int i) {
-            return null;
-        }
-
-        @Override
-        public int indexOf(Object o) {
-            return 0;
-        }
-
-        @Override
-        public int lastIndexOf(Object o) {
-            return 0;
-        }
-
-        @NonNull
-        @Override
-        public ListIterator<MyImage> listIterator() {
-            return null;
-        }
-
-        @NonNull
-        @Override
-        public ListIterator<MyImage> listIterator(int i) {
-            return null;
-        }
-
-        @NonNull
-        @Override
-        public List<MyImage> subList(int i, int i1) {
-            return null;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
-        init();
-        show();
+
+
+
     }
 
-    private void show() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-        MyImageAdapter adapter = new MyImageAdapter(myImageList);
-        recyclerView.setAdapter(adapter);
-    }
-
-    private void init() {
-        for (int i = 0; i < 4; i++) {
-            MyImage imagee1 = new MyImage(R.mipmap.imagetest);
-            myImageList.add(imagee1);
-            MyImage imagee2 = new MyImage(R.mipmap.imagetest);
-            myImageList.add(imagee2);
-            MyImage imagee3 = new MyImage(R.mipmap.imagetest);
-            myImageList.add(imagee3);
-            MyImage imagee4 = new MyImage(R.mipmap.imagetest);
-            myImageList.add(imagee4);
-
-        }
-    }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.photo_menu,menu);
         return true;
@@ -184,34 +36,56 @@ public class PhotoActivity extends AppCompatActivity {
                 i=random.nextInt(5)+1;
                 switch (i){
                     case 1:
-                        MyImage imageenew1 = new MyImage(R.mipmap.imagetest);
-                        myImageList.add(imageenew1);
+                        ImageView imageenew1 = findViewById(R.id.image1);
+                        imageenew1.setImageResource(R.mipmap.yueyanglou);
                         break;
                     case 2:
-                        MyImage imageenew2 = new MyImage(R.mipmap.imagetest);
-                        myImageList.add(imageenew2);
+                        ImageView imageenew2 = findViewById(R.id.image2);
+                        imageenew2.setImageResource(R.mipmap.changcheng);
                         break;
                     case 3:
-                        MyImage imageenew3 = new MyImage(R.mipmap.imagetest);
-                        myImageList.add(imageenew3);
+                        ImageView imageenew3 = findViewById(R.id.image3);
+                        imageenew3.setImageResource(R.mipmap.xihu);
                         break;
                     case 4:
-                        MyImage imageenew4 = new MyImage(R.mipmap.imagetest);
-                        myImageList.add(imageenew4);
+                        ImageView imageenew4 = findViewById(R.id.image4);
+                        imageenew4.setImageResource(R.mipmap.tianjinzhiyan);
                         break;
                     case 5:
-                        MyImage imageenew5 = new MyImage(R.mipmap.imagetest);
-                        myImageList.add(imageenew5);
+                        ImageView imageenew5 = findViewById(R.id.image5);
+                        imageenew5.setImageResource(R.mipmap.yiheyuan);
                         break;
                     default:
                         break;
                 }
-                show();
+
                 break;
             case R.id.remove_item:
-                i = random.nextInt(myImageList.size());
-                myImageList.remove(i);
-                show();
+                i=random.nextInt(5)+1;
+                switch (i){
+                    case 1:
+                        ImageView imageenew1 = findViewById(R.id.image1);
+                        imageenew1.setImageDrawable(null);
+                        break;
+                    case 2:
+                        ImageView imageenew2 = findViewById(R.id.image1);
+                        imageenew2.setImageDrawable(null);
+                        break;
+                    case 3:
+                        ImageView imageenew3 = findViewById(R.id.image2);
+                        imageenew3.setImageDrawable(null);
+                        break;
+                    case 4:
+                        ImageView imageenew4 = findViewById(R.id.image3);
+                        imageenew4.setImageDrawable(null);
+                        break;
+                    case 5:
+                        ImageView imageenew5 = findViewById(R.id.image4);
+                        imageenew5.setImageDrawable(null);
+                        break;
+                    default:
+                        break;
+                }
                 break;
             default:
                 break;

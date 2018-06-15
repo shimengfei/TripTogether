@@ -153,7 +153,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     }
                 };*/
               if(getSign()==1){
-
                   login(user,pwd);
                   Intent intent=new Intent(Login.this,MainActivity.class);
                   clearSign();
@@ -210,11 +209,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 //跳到注册页面
                 Intent intent=new Intent(Login.this,register.class);
                 startActivity(intent);
+                Login.this.finish();
                 break;
             case R.id.pwdBtn:
                 //跳到找回密码页面
                 Intent intent1=new Intent(Login.this,FindPwd.class);
                 startActivity(intent1);
+
                 break;
         }
     }
