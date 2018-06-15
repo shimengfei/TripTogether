@@ -24,7 +24,7 @@
             android:layout_height="25dp"
             android:layout_weight="1"
 
-            android:src="@drawable/righticon" />
+            android:src="@mipmap/ic_search" />
     </LinearLayout>
 
     <ListView
