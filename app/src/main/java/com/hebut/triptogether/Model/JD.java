@@ -1,12 +1,10 @@
-package com.hebut.triptogether.UI.PushList;
+package com.hebut.triptogether.Model;
 
 /**
  * Created by Zhang_Rui on 2018/6/11.
  */
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.math.BigDecimal;
 
 /**
  * Created by LICHENGLONG on 2017-10-12.

@@ -152,7 +152,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         }
                     }
                 };*/
-              if(getSign()==1){
+              if(getSign()==0){
                   login(user,pwd);
                   Intent intent=new Intent(Login.this,MainActivity.class);
                   clearSign();

@@ -54,7 +54,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
     }
     private Button  submit  = null;
     URL url = null;
-    String urlPath = "http://10.0.3.2:8080/XMLParse/AcceptJsonServlet";
+    String urlPath = "http://10.0.3.2:8080/UpdateServlet";
     EditText name    = null;
     EditText date    = null;
     EditText address = null;

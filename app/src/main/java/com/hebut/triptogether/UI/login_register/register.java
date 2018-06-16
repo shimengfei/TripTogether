@@ -95,8 +95,7 @@ public class register extends AppCompatActivity implements View.OnClickListener,
                         if (cb_regist.isChecked()) {
                             User user=new User(et_name.getText().toString(),et_pwd.getText().toString(),et_email.getText().toString());
                             isRegister("/TripTogetherServer/register",jsontool.setUser(user));
-                        } else {
-                            Toast.makeText(register.this, "未同意注册协议", Toast.LENGTH_SHORT).show();
+                        } else {                            Toast.makeText(register.this, "未同意注册协议", Toast.LENGTH_SHORT).show();
                         }
                     }else {
                         Toast.makeText(register.this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();

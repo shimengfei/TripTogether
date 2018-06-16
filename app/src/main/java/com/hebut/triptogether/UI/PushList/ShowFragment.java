@@ -17,9 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ab.global.AbAppConfig;
-import com.ab.http.entity.Header;
-
+import com.hebut.triptogether.Model.JD;
 import com.hebut.triptogether.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -58,7 +56,7 @@ public class ShowFragment extends Fragment {
 
     public void findSectionData(){
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://192.168.1.194:8080/TripTogetherServer/route", null, new AsyncHttpResponseHandler() {
+        client.get("http://192.168.1.194:8080/TripTogetherServer/push", null, new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int i, org.apache.http.Header[] headers, byte[] bytes) {
