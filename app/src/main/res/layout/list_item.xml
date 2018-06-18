@@ -51,7 +51,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:text="list view item"
-        android:textColor="@color/gray_white"
+        android:textColor="@color/blue"
         android:textSize="14sp" />
 
 </RelativeLayout>

@@ -1,19 +1,23 @@
 package com.hebut.triptogether.UI.PushList;
+
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
+import android.preference.PreferenceActivity;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,23 +25,21 @@ import com.hebut.triptogether.Model.JD;
 import com.hebut.triptogether.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
+import net.sf.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShowFragment extends Fragment {
 
     private List<JD> list;
-    private EditText eName;
-    //private EditText eBalance;
     private ListView listView;
     private  JD f;
-    private  ImageView search;
+    private SearchView search;
     List<JD> listBasSectionInfoData = new ArrayList<>();
 
     @Override
@@ -55,24 +57,28 @@ public class ShowFragment extends Fragment {
     }
 
     public void findSectionData(){
+
+
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://192.168.1.194:8080/TripTogetherServer/push", null, new AsyncHttpResponseHandler() {
+       client.get("http://d2115564y6.iok.la:10980/TripTogetherServer/push", null, new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int i, org.apache.http.Header[] headers, byte[] bytes) {
                 try {
-                    JSONObject object =  new JSONObject(new String("responseBody"));//获取json数据
-                    JSONArray jsonArray = object.getJSONArray("obj");//获取数据集名称为obj的数据
+
+                   //Toast.makeText(getActivity(),new String(bytes),Toast.LENGTH_SHORT).show();
+                   JSONObject jsonObject=JSONObject.fromObject(new String(bytes));
+                    JSONArray jsonArray = jsonObject.getJSONArray("obj");//获取数据集名称为obj的数据
                     Log.d("jsonArray数据输出：", String.valueOf(jsonArray));
-                    for (int j = 0; j < jsonArray.length();j++) {
-                        JD novels = JD.sectionInfoData(jsonArray.getJSONObject(i));//把数据存在novels集合中
+                    for (int j = 0; j < jsonArray.size();j++) {
+                        JD novels = JD.sectionInfoData(jsonArray.getJSONObject(j));//把数据存在novels集合中
                         if (novels != null){
                             listBasSectionInfoData.add(novels);
                         }else {
                             Toast.makeText(getActivity(), "数据为空！", Toast.LENGTH_LONG).show();
                         }
                     }
-//数据加载完毕，通知列表去更新
+                    //数据加载完毕，通知列表去更新
                     baseAdapter.notifyDataSetChanged();
 
                 } catch (JSONException e) {
@@ -84,6 +90,7 @@ public class ShowFragment extends Fragment {
             public void onFailure(int i, org.apache.http.Header[] headers, byte[] bytes, Throwable throwable) {
                 //请求失败的回调处理
                 Toast.makeText(getActivity(), "请链接网络，稍后重试", Toast.LENGTH_SHORT).show();
+                Log.v("返回代码：",String.valueOf(i));
             }
         });
     }
@@ -122,13 +129,16 @@ public class ShowFragment extends Fragment {
             Log.d("novels数据：", String.valueOf(basSectionInfo));
 
             //0000000000000000000000000000000000000000000000000000000
-            String path= Environment.getExternalStorageDirectory()+ File.separator+basSectionInfo.getHeadPortrait();
-            Bitmap bm = BitmapFactory.decodeFile(path);
+            String path= basSectionInfo.getHeadPortrait();
+            Context ctx=getContext();
+            int resId = getResources().getIdentifier(path, "mipmap" , ctx.getPackageName());
+            Resources res = getResources();
+            Bitmap bm= BitmapFactory.decodeResource(res, resId);
             //00000000000000000000000000000000000000000000000000000000
 
             sectionInfo.jd_lv_headPortrait.setImageBitmap(bm);//不会变形
             sectionInfo.jd_tv_jdName.setText(basSectionInfo.getJdName());
-            sectionInfo.jd_tv_sectionPrice.setText(basSectionInfo.getPrice());
+            sectionInfo.jd_tv_sectionPrice.setText("￥"+basSectionInfo.getPrice());
             sectionInfo.jd_tv_sectionIntro.setText(basSectionInfo.getIntro());
             return convertView;
         }
@@ -143,24 +153,45 @@ public class ShowFragment extends Fragment {
 
     private void initView() {
         listView = (ListView) getActivity().findViewById(R.id.list);
-        eName = (EditText) getActivity().findViewById(R.id.ed1);
-        //eBalance = (EditText) getActivity().findViewById(R.id.ed2);
-        search=(ImageView) getActivity().findViewById(R.id.search) ;
-        search.setOnClickListener(new View.OnClickListener() {
+        search=(SearchView)getActivity().findViewById(R.id.search);
+        // 设置该SearchView显示搜索按钮
+        search.setSubmitButtonEnabled(true);
+        // 设置该SearchView内默认显示的提示文本
+        search.setQueryHint("查找");
+        listView.setTextFilterEnabled(true);//设置lv可以被过虑
+        // 设置该SearchView默认是否自动缩小为图标
+        search.setIconifiedByDefault(false);
+        // 为该SearchView组件设置事件监听器
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View view) {
-                search(search);
+            public boolean onQueryTextSubmit(String s) {
+                // 实际应用中应该在该方法内执行实际查询
+                // 此处仅使用Toast显示用户输入的查询内容
+                listView.setFilterText(s);
+                //Toast.makeText(getActivity(), "您的选择是:" + s, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                //Toast.makeText(getActivity(), "textChange--->" + s, Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(s)) {
+                    // 清除ListView的过滤
+                    listView.clearTextFilter();
+                } else {
+                    // 使用用户输入的内容对ListView的列表项进行过滤
+                    listView.setFilterText(s);
+                }
+                return true;
             }
         });
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        JD   JD = (JD) adapterView.getItemAtPosition(i);
+                JD   JD = (JD) adapterView.getItemAtPosition(i);
             }
         });
-    }
-    public void search(View view){
-
     }
 
 }

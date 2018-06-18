@@ -54,7 +54,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
     }
     private Button  submit  = null;
     URL url = null;
-    String urlPath = "http://10.0.3.2:8080/UpdateServlet";
+    String urlPath = "http://d2115564y6.iok.la:10980/TripTogetherServer/UpdateServlet";
     EditText name    = null;
     EditText date    = null;
     EditText address = null;
@@ -127,7 +127,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
                             JSONObject params = new JSONObject();
 
-                            // JSONArray array = new JSONArray();
+                            //JSONArray array = new JSONArray();
 
                             Person p = new Person(name.getText().toString()
                                     ,selectSex
@@ -141,7 +141,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
                                 js.put("sex", p.getSex());
                                 js.put("job", p.getJob());
                                 js.put("hobby", p.getHobby());
-                                js.put("date", p.getDate());
+                                js.put("birth", p.getDate());
                                 // 封装Person数组
                                 params.put("Person", js);
                             }
@@ -150,7 +150,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             // 把Json数据转换成String类型，使用输出流向服务器写
-                            final String content = String.valueOf(params);
+                            final String content = js.toString();
 
                             try
                             {
@@ -166,6 +166,7 @@ public class PersonalInfoActivity extends AppCompatActivity {
                                 os.close();
                                 if (conn.getResponseCode() == 200)
                                 {
+                                    Toast.makeText(PersonalInfoActivity.this,conn.getResponseCode(),Toast.LENGTH_SHORT).show();
                                     handler.sendEmptyMessage(0x123);
                                 }
                                 else

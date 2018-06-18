@@ -8,11 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import android.view.ViewGroup;
-
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hebut.triptogether.R;
 
@@ -28,8 +25,6 @@ public class PersonalCenterFragment extends Fragment{
         TextView profile_name=getActivity().findViewById(R.id.profile_name);
         CircleImageView profile_image=getActivity().findViewById(R.id.profile_image);
         LSettingItem item_one=getActivity().findViewById(R.id.item_one);
-        LSettingItem item_two=getActivity().findViewById(R.id.item_two);
-        LSettingItem item_three=getActivity().findViewById(R.id.item_three);
         LSettingItem item_four=getActivity().findViewById(R.id.item_four);
         LSettingItem item_five=getActivity().findViewById(R.id.item_five);
         LSettingItem item_six=getActivity().findViewById(R.id.item_six);
@@ -41,31 +36,15 @@ public class PersonalCenterFragment extends Fragment{
         item_one.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
             @Override
             public void click(boolean isChecked) {
-                Toast.makeText(getActivity(),"item_one",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(),"item_one",//Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getActivity(), PersonalInfoActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
-        item_two.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
-            @Override
-            public void click(boolean isChecked) {
-                Toast.makeText(getActivity(),"item_two",Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(getActivity(), TraceActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
-        item_three.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
-            @Override
-            public void click(boolean isChecked) {
-                Toast.makeText(getActivity(),"item_three",Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(getActivity(), GalleryActivity.class);
                 getActivity().startActivity(intent);
             }
         });
         item_four.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
             @Override
             public void click(boolean isChecked) {
-                Toast.makeText(getActivity(),"item_four",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(),"item_four",//Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getActivity(), MoneyActivity.class);
                 getActivity().startActivity(intent);
             }
@@ -73,15 +52,15 @@ public class PersonalCenterFragment extends Fragment{
         item_five.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
             @Override
             public void click(boolean isChecked) {
-                Toast.makeText(getActivity(),"item_five",Toast.LENGTH_LONG).show();
-                Intent intent=new Intent(getActivity(), PhotoActivity.class);
+                //Toast.makeText(getActivity(),"item_five",//Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(getActivity(), PickOrTakeImageActivity.class);
                 getActivity().startActivity(intent);
             }
         });
         item_six.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
             @Override
             public void click(boolean isChecked) {
-                Toast.makeText(getActivity(),"item_six",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(),"item_six",//Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getActivity(), HelpActivity.class);
                 getActivity().startActivity(intent);
             }
@@ -89,7 +68,7 @@ public class PersonalCenterFragment extends Fragment{
         item_seven.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
             @Override
             public void click(boolean isChecked) {
-                Toast.makeText(getActivity(),"item_seven",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(),"item_seven",//Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getActivity(), AboutActivity.class);
                 getActivity().startActivity(intent);
             }
@@ -97,7 +76,7 @@ public class PersonalCenterFragment extends Fragment{
         item_eight.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
             @Override
             public void click(boolean isChecked) {
-                Toast.makeText(getActivity(),"item_eight",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(),"item_eight",//Toast.LENGTH_LONG).show();
                 Intent intent=new Intent(getActivity(), SetActivity.class);
                 getActivity().startActivity(intent);
             }

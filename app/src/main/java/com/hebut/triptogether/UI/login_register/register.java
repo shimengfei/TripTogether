@@ -152,7 +152,7 @@ public class register extends AppCompatActivity implements View.OnClickListener,
 
     public void isRegister(String path, JSONObject jsonObject) {
         HttpURLConnection conn = null;
-        String urlStr = "http://192.168.130.2:8080" + path;
+        String urlStr = "http://d2115564y6.iok.la:10980" + path;
         InputStream is = null;
         String resultData = "";
         BufferedReader reader;

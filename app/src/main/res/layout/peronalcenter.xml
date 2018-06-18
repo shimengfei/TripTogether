@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".UI.Main.MainActivity">
+    tools:context=".UI.Main.MainActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,25 +51,10 @@
         leon:leftText="个人资料" />
 
     <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
-        android:id="@+id/item_two"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        leon:leftText="足迹" />
-
-    <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
-        android:id="@+id/item_three"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        leon:leftText="收藏"
-        />
-
-    <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
         android:id="@+id/item_four"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/MyCheckBox"
+
 
         leon:leftText="余额"
         />
@@ -77,15 +63,12 @@
         android:id="@+id/item_five"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         leon:leftText="我的相册" />
 
     <com.hebut.triptogether.UI.PersonalInfor.LSettingItem
         android:id="@+id/item_six"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/MyCheckBox"
-
 
         leon:leftText="帮助" />
 
@@ -93,8 +76,6 @@
     android:id="@+id/item_seven"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    leon:isShowUnderLine="false"
-
     leon:leftText="关于"
      />
 
@@ -103,7 +84,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         leon:isShowUnderLine="false"
-
         leon:leftText="设置"
          />
 

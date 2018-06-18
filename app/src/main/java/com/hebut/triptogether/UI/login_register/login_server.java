@@ -7,7 +7,7 @@ import com.hebut.triptogether.Model.User;
 import com.hebut.triptogether.Model.person;
 import net.sf.json.JSONObject;
 public class login_server {
-    static String path = "http://192.168.130.2:8080/TripTogetherServer/";
+    static String path = "http://d2115564y6.iok.la:10980/TripTogetherServer/";
 
     public static boolean login(final String username, final String password,final String emailAddress) {
         new Thread() {

@@ -30,7 +30,7 @@ public class activity_start extends AppCompatActivity {
 
                 //获得保存在SharedPredPreferences中的用户名和密码
                    //去查询数据库对应的用户表判断用户的登录是否合法
-                    String username = sp.getString("username", "");
+                    final String username = sp.getString("username", "");
                     String password = sp.getString("password", "");
                     int sign=0;
                     /*
@@ -47,28 +47,28 @@ public class activity_start extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(getSign()==0){
+                if(getSign()==1){
                      mainIntent = new Intent(activity_start.this,
-                            Login.class);
+                            MainActivity.class);
 
                     new Thread(){
                         @Override
                         public void run()
                         {
                             jsonroute js=new jsonroute();
-                            js.getRoute(getApplication(),"153159");
+                            js.getRoute(getApplication(),username);
                         }
                     }.start();
 
                 }else{
                      mainIntent = new Intent(activity_start.this,
-                            MainActivity.class);
+                            Login.class);
                     new Thread(){
                         @Override
                         public void run()
                         {
                             jsonroute js=new jsonroute();
-                            js.getRoute(getApplication(),"153159");
+                            js.getRoute(getApplication(),username);
                         }
                     }.start();
                 }

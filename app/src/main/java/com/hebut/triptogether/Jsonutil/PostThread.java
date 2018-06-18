@@ -73,7 +73,7 @@ public class PostThread extends Thread {
         clearSign();
         Looper.prepare();
         HttpURLConnection conn = null;
-        String urlStr = "http://192.168.1.194:8080" + path;
+        String urlStr = "http://d2115564y6.iok.la:10980" + path;
         InputStream is = null;
         String resultData = "";
         BufferedReader reader;

@@ -21,7 +21,7 @@ import java.net.URL;
     }
     public void run(){
         HttpURLConnection conn=null;//声明连接对象
-        String urlStr="http://192.168.1.194:8080"+path+"?name="+name+"&password="+password;
+        String urlStr="http://d2115564y6.iok.la:10980"+path+"?name="+name+"&password="+password;
         InputStream is = null;
         String resultData = "";
         try {

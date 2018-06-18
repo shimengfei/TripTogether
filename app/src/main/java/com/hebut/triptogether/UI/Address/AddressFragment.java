@@ -213,7 +213,7 @@ public class AddressFragment extends Fragment {
                     sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
                 }
             }
-            Log.e("描述：", sb.toString());
+            //Log.e("描述：", sb.toString());
         }
 
         /**

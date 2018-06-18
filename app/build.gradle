@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.hebut.triptogether"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -47,6 +47,8 @@ dependencies {
     compile 'com.leon:lsettingviewlibrary:1.7.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:preference-v7:26.1.0'
+    compile 'com.android.support:preference-v14:26.1.0'
     implementation files('libs/commons-beanutils-1.8.0.jar')
     implementation files('libs/commons-lang-2.4.jar')
     implementation files('libs/commons-lang3-3.1.jar')
